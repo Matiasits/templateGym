@@ -1,0 +1,68 @@
+/* Contenedor del dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Botón del dropdown */
+.dropdown-btn {
+    background: transparent;
+    border: none;
+    color: #ccc;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+/* Cambia el color del botón cuando el mouse pasa sobre él */
+.dropdown-btn:hover {
+    color: #fff;
+}
+
+/* Estilos para el menú desplegable */
+.dropdown-list {
+    position: absolute;
+    right: 0;
+    background-color: #222;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+    list-style: none;
+    padding: 8px 0;
+    min-width: 120px;
+    display: none;
+    z-index: 100;
+}
+
+/* Estilos de los elementos dentro del dropdown */
+.dropdown-item {
+    color: #ccc;
+    padding: 8px 15px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    transition: background 0.2s ease-in-out;
+}
+
+/* Efecto hover en las opciones */
+.dropdown-item:hover {
+    background-color: #333;
+    color: white;
+}
+
+/* Estilo especial para la opción de eliminar */
+.dropdown-danger {
+    color: red;
+}
+
+.dropdown-danger:hover {
+    background-color: rgba(255, 0, 0, 0.2);
+}
+
+.dropdown.active .dropdown-list {
+    display: flex !important;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0;
+    z-index: 1000;
+    flex-direction: column;
+}

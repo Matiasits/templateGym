@@ -5,6 +5,8 @@
   <title>The Gym Project</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel="stylesheet" href="dist/style.css">
+  <link rel="stylesheet" href="./css/modals.css">
+  <link rel="stylesheet" href="./css/dropdown.css">
   <link rel="icon" href="./dist/logoTGP.jpg">
   
 </head>
@@ -85,300 +87,98 @@
       </div>
     </div>
     <div class="products-area-wrapper tableView">
-      <div class="products-header">
-        <div class="product-cell category">DNI<button class="sort-button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-          </button></div>
-        <div class="product-cell status-cell">N° de Plan<button class="sort-button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-          </button></div>
-        <div class="product-cell sales">Nombre y Apellido<button class="sort-button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-          </button></div>
-        <div class="product-cell stock">Domicilio<button class="sort-button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-          </button></div>
-        <div class="product-cell stock">Telefono<button class="sort-button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-          </button></div>
-        <div class="product-cell price">Telefono de Emergencia<button class="sort-button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-          </button></div>
-        <div class="product-cell price">Fecha de Ingreso<button class="sort-button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-          </button></div>
-          <div class="product-cell price">Fecha Inicio de Plan<button class="sort-button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-          </button></div>
-          <div class="product-cell price">Fecha Fin de Plan<button class="sort-button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-          </button></div>
-          <div class="product-cell price">Tipo de plan<button class="sort-button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-          </button></div>
-          <div class="product-cell price">Estado<button class="sort-button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
-          </button></div>
-          <div class="product-cell price">Acciones<button class="sort-button">
-          </button></div>
-      </div>
-      <div class="products-row">
-        <div class="product-cell image">
-          <span>41712653</span>
-        </div>
-        <div class="product-cell category">
-          <span class="cell-label">Category:</span>34
-        </div>
-        <div class="product-cell sales"><span class="cell-label">Nombre y apellido:</span>Matias Roldan</div>
-        <div class="product-cell stock"><span class="cell-label">Domicilio:</span>Republica Dominicana 322</div>
-        <div class="product-cell phone"><span class="cell-label">Telefono:</span>3513703912</div>
-        <div class="product-cell phone-emergency"><span class="cell-label">Telefono Emergencia:</span>3513703912</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Ingreso:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Inicio:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Fin:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Tipo plan:</span>Pase libre</div>
-        <div class="product-cell date"><span class="cell-label">Estado:</span><span class="status disabled">En deuda</span></div>
-        <div class="product-cell date"><span class="cell-label">Acciones:</span>...</div>
-      </div>
-      <div class="products-row">
-        <div class="product-cell image">
-          <span>41712653</span>
-        </div>
-        <div class="product-cell category">
-          <span class="cell-label">Category:</span>34
-        </div>
-        <div class="product-cell sales"><span class="cell-label">Nombre y apellido:</span>Matias Roldan</div>
-        <div class="product-cell stock"><span class="cell-label">Domicilio:</span>Republica Dominicana 322</div>
-        <div class="product-cell phone"><span class="cell-label">Telefono:</span>3513703912</div>
-        <div class="product-cell phone-emergency"><span class="cell-label">Telefono Emergencia:</span>3513703912</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Ingreso:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Inicio:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Fin:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Tipo plan:</span>Pase libre</div>
-        <div class="product-cell date"><span class="cell-label">Estado:</span><span class="status active">Al dia</span></div>
-        <div class="product-cell date"><span class="cell-label">Acciones:</span>...</div>
-      </div>
-      <div class="products-row">
-        <div class="product-cell image">
-          <span>41712653</span>
-        </div>
-        <div class="product-cell category">
-          <span class="cell-label">Category:</span>34
-        </div>
-        <div class="product-cell sales"><span class="cell-label">Nombre y apellido:</span>Matias Roldan</div>
-        <div class="product-cell stock"><span class="cell-label">Domicilio:</span>Republica Dominicana 322</div>
-        <div class="product-cell phone"><span class="cell-label">Telefono:</span>3513703912</div>
-        <div class="product-cell phone-emergency"><span class="cell-label">Telefono Emergencia:</span>3513703912</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Ingreso:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Inicio:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Fin:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Tipo plan:</span>Pase libre</div>
-        <div class="product-cell date"><span class="cell-label">Estado:</span><span class="status disabled">En deuda</span></div>
-        <div class="product-cell date"><span class="cell-label">Acciones:</span>...</div>
-      </div>
-      <div class="products-row">
-        <div class="product-cell image">
-          <span>41712653</span>
-        </div>
-        <div class="product-cell category">
-          <span class="cell-label">Category:</span>34
-        </div>
-        <div class="product-cell sales"><span class="cell-label">Nombre y apellido:</span>Matias Roldan</div>
-        <div class="product-cell stock"><span class="cell-label">Domicilio:</span>Republica Dominicana 322</div>
-        <div class="product-cell phone"><span class="cell-label">Telefono:</span>3513703912</div>
-        <div class="product-cell phone-emergency"><span class="cell-label">Telefono Emergencia:</span>3513703912</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Ingreso:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Inicio:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Fin:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Tipo plan:</span>Pase libre</div>
-        <div class="product-cell date"><span class="cell-label">Estado:</span><span class="status active">Al dia</span></div>
-        <div class="product-cell date"><span class="cell-label">Acciones:</span>...</div>
-      </div>
-      <div class="products-row">
-        <div class="product-cell image">
-          <span>41712653</span>
-        </div>
-        <div class="product-cell category">
-          <span class="cell-label">Category:</span>34
-        </div>
-        <div class="product-cell sales"><span class="cell-label">Nombre y apellido:</span>Matias Roldan</div>
-        <div class="product-cell stock"><span class="cell-label">Domicilio:</span>Republica Dominicana 322</div>
-        <div class="product-cell phone"><span class="cell-label">Telefono:</span>3513703912</div>
-        <div class="product-cell phone-emergency"><span class="cell-label">Telefono Emergencia:</span>3513703912</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Ingreso:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Inicio:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Fin:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Tipo plan:</span>Pase libre</div>
-        <div class="product-cell date"><span class="cell-label">Estado:</span><span class="status disabled">En deuda</span></div>
-        <div class="product-cell date"><span class="cell-label">Acciones:</span>...</div>
-      </div>
-      <div class="products-row">
-        <div class="product-cell image">
-          <span>41712653</span>
-        </div>
-        <div class="product-cell category">
-          <span class="cell-label">Category:</span>34
-        </div>
-        <div class="product-cell sales"><span class="cell-label">Nombre y apellido:</span>Matias Roldan</div>
-        <div class="product-cell stock"><span class="cell-label">Domicilio:</span>Republica Dominicana 322</div>
-        <div class="product-cell phone"><span class="cell-label">Telefono:</span>3513703912</div>
-        <div class="product-cell phone-emergency"><span class="cell-label">Telefono Emergencia:</span>3513703912</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Ingreso:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Inicio:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Fin:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Tipo plan:</span>Pase libre</div>
-        <div class="product-cell date"><span class="cell-label">Estado:</span><span class="status active">Al dia</span></div>
-        <div class="product-cell date"><span class="cell-label">Acciones:</span>...</div>
-      </div>
-      <div class="products-row">
-        <div class="product-cell image">
-          <span>41712653</span>
-        </div>
-        <div class="product-cell category">
-          <span class="cell-label">Category:</span>34
-        </div>
-        <div class="product-cell sales"><span class="cell-label">Nombre y apellido:</span>Matias Roldan</div>
-        <div class="product-cell stock"><span class="cell-label">Domicilio:</span>Republica Dominicana 322</div>
-        <div class="product-cell phone"><span class="cell-label">Telefono:</span>3513703912</div>
-        <div class="product-cell phone-emergency"><span class="cell-label">Telefono Emergencia:</span>3513703912</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Ingreso:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Inicio:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Fin:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Tipo plan:</span>Pase libre</div>
-        <div class="product-cell date"><span class="cell-label">Estado:</span><span class="status disabled">En deuda</span></div>
-        <div class="product-cell date"><span class="cell-label">Acciones:</span>...</div>
-      </div>
-      <div class="products-row">
-        <div class="product-cell image">
-          <span>41712653</span>
-        </div>
-        <div class="product-cell category">
-          <span class="cell-label">Category:</span>34
-        </div>
-        <div class="product-cell sales"><span class="cell-label">Nombre y apellido:</span>Matias Roldan</div>
-        <div class="product-cell stock"><span class="cell-label">Domicilio:</span>Republica Dominicana 322</div>
-        <div class="product-cell phone"><span class="cell-label">Telefono:</span>3513703912</div>
-        <div class="product-cell phone-emergency"><span class="cell-label">Telefono Emergencia:</span>3513703912</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Ingreso:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Inicio:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Fin:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Tipo plan:</span>Pase libre</div>
-        <div class="product-cell date"><span class="cell-label">Estado:</span><span class="status active">Al dia</span></div>
-        <div class="product-cell date"><span class="cell-label">Acciones:</span>...</div>
-      </div>
-      <div class="products-row">
-        <div class="product-cell image">
-          <span>41712653</span>
-        </div>
-        <div class="product-cell category">
-          <span class="cell-label">Category:</span>34
-        </div>
-        <div class="product-cell sales"><span class="cell-label">Nombre y apellido:</span>Matias Roldan</div>
-        <div class="product-cell stock"><span class="cell-label">Domicilio:</span>Republica Dominicana 322</div>
-        <div class="product-cell phone"><span class="cell-label">Telefono:</span>3513703912</div>
-        <div class="product-cell phone-emergency"><span class="cell-label">Telefono Emergencia:</span>3513703912</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Ingreso:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Inicio:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Fin:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Tipo plan:</span>Pase libre</div>
-        <div class="product-cell date"><span class="cell-label">Estado:</span><span class="status disabled">En deuda</span></div>
-        <div class="product-cell date"><span class="cell-label">Acciones:</span>...</div>
-      </div>
-      <div class="products-row">
-        <div class="product-cell image">
-          <span>41712653</span>
-        </div>
-        <div class="product-cell category">
-          <span class="cell-label">Category:</span>34
-        </div>
-        <div class="product-cell sales"><span class="cell-label">Nombre y apellido:</span>Matias Roldan</div>
-        <div class="product-cell stock"><span class="cell-label">Domicilio:</span>Republica Dominicana 322</div>
-        <div class="product-cell phone"><span class="cell-label">Telefono:</span>3513703912</div>
-        <div class="product-cell phone-emergency"><span class="cell-label">Telefono Emergencia:</span>3513703912</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Ingreso:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Inicio:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Fin:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Tipo plan:</span>Pase libre</div>
-        <div class="product-cell date"><span class="cell-label">Estado:</span><span class="status active">Al dia</span></div>
-        <div class="product-cell date"><span class="cell-label">Acciones:</span>...</div>
-      </div>
-      <div class="products-row">
-        <div class="product-cell image">
-          <span>41712653</span>
-        </div>
-        <div class="product-cell category">
-          <span class="cell-label">Category:</span>34
-        </div>
-        <div class="product-cell sales"><span class="cell-label">Nombre y apellido:</span>Matias Roldan</div>
-        <div class="product-cell stock"><span class="cell-label">Domicilio:</span>Republica Dominicana 322</div>
-        <div class="product-cell phone"><span class="cell-label">Telefono:</span>3513703912</div>
-        <div class="product-cell phone-emergency"><span class="cell-label">Telefono Emergencia:</span>3513703912</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Ingreso:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Inicio:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Fin:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Tipo plan:</span>Pase libre</div>
-        <div class="product-cell date"><span class="cell-label">Estado:</span><span class="status disabled">En deuda</span></div>
-        <div class="product-cell date"><span class="cell-label">Acciones:</span>...</div>
-      </div>
-      <div class="products-row">
-        <div class="product-cell image">
-          <span>41712653</span>
-        </div>
-        <div class="product-cell category">
-          <span class="cell-label">Category:</span>34
-        </div>
-        <div class="product-cell sales"><span class="cell-label">Nombre y apellido:</span>Matias Roldan</div>
-        <div class="product-cell stock"><span class="cell-label">Domicilio:</span>Republica Dominicana 322</div>
-        <div class="product-cell phone"><span class="cell-label">Telefono:</span>3513703912</div>
-        <div class="product-cell phone-emergency"><span class="cell-label">Telefono Emergencia:</span>3513703912</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Ingreso:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Inicio:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Fin:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Tipo plan:</span>Pase libre</div>
-        <div class="product-cell date"><span class="cell-label">Estado:</span><span class="status active">Al dia</span></div>
-        <div class="product-cell date"><span class="cell-label">Acciones:</span>...</div>
-      </div>
-      <div class="products-row">
-        <div class="product-cell image">
-          <span>41712653</span>
-        </div>
-        <div class="product-cell category">
-          <span class="cell-label">Category:</span>34
-        </div>
-        <div class="product-cell sales"><span class="cell-label">Nombre y apellido:</span>Matias Roldan</div>
-        <div class="product-cell stock"><span class="cell-label">Domicilio:</span>Republica Dominicana 322</div>
-        <div class="product-cell phone"><span class="cell-label">Telefono:</span>3513703912</div>
-        <div class="product-cell phone-emergency"><span class="cell-label">Telefono Emergencia:</span>3513703912</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Ingreso:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Inicio:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Fin:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Tipo plan:</span>Pase libre</div>
-        <div class="product-cell date"><span class="cell-label">Estado:</span><span class="status disabled">En deuda</span></div>
-        <div class="product-cell date"><span class="cell-label">Acciones:</span>...</div>
-      </div>
-      <div class="products-row">
-        <div class="product-cell image">
-          <span>41712653</span>
-        </div>
-        <div class="product-cell category">
-          <span class="cell-label">Category:</span>34
-        </div>
-        <div class="product-cell sales"><span class="cell-label">Nombre y apellido:</span>Matias Roldan</div>
-        <div class="product-cell stock"><span class="cell-label">Domicilio:</span>Republica Dominicana 322</div>
-        <div class="product-cell phone"><span class="cell-label">Telefono:</span>3513703912</div>
-        <div class="product-cell phone-emergency"><span class="cell-label">Telefono Emergencia:</span>3513703912</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Ingreso:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Inicio:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Fecha Fin:</span>10/10/2022</div>
-        <div class="product-cell date"><span class="cell-label">Tipo plan:</span>Pase libre</div>
-        <div class="product-cell date"><span class="cell-label">Estado:</span><span class="status active">Al dia</span></div>
-        <div class="product-cell date"><span class="cell-label">Acciones:</span>...</div>
-      </div>
+      <table class="table" style="width:100%;">
+        <thead>
+          <div class="products-header">
+            <div class="product-cell category">DNI<button class="sort-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
+              </button></div>
+            <div class="product-cell status-cell">N° de Plan<button class="sort-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
+              </button></div>
+            <div class="product-cell sales">Nombre y Apellido<button class="sort-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
+              </button></div>
+            <div class="product-cell stock">Domicilio<button class="sort-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
+              </button></div>
+            <div class="product-cell stock">Telefono<button class="sort-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
+              </button></div>
+            <div class="product-cell price">Telefono de Emergencia<button class="sort-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
+              </button></div>
+            <div class="product-cell price">Fecha de Ingreso<button class="sort-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
+              </button></div>
+              <div class="product-cell price">Fecha Inicio de Plan<button class="sort-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
+              </button></div>
+              <div class="product-cell price">Fecha Fin de Plan<button class="sort-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
+              </button></div>
+              <div class="product-cell price">Tipo de plan<button class="sort-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
+              </button></div>
+              <div class="product-cell price">Estado<button class="sort-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512"><path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"/></svg>
+              </button></div>
+              <div class="product-cell price">Acciones<button class="sort-button">
+              </button></div>
+          </div>
+        </thead>
+        <tbody id="alumnos-container">
+            <!-- Aquí se agregarán dinámicamente las filas -->
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
+
+
+<!-- Modal para Actualizar -->
+<div id="modal-actualizar" class="modal">
+  <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Actualizar Alumno</h2>
+      <p>DNI: <span id="dni-actualizar"></span></p>
+      
+      <label>Nombre:</label>
+      <input type="text" id="nombre-actualizar">
+      
+      <label>Apellido:</label>
+      <input type="text" id="apellido-actualizar">
+      
+      <label>Domicilio:</label>
+      <input type="text" id="domicilio-actualizar">
+      
+      <label>Teléfono:</label>
+      <input type="text" id="telefono-actualizar">
+      
+      <label>Teléfono Emergencia:</label>
+      <input type="text" id="telefonoEmergencia-actualizar">
+      
+      <label>Plan ID:</label>
+      <input type="number" id="planId-actualizar">
+
+      <button onclick="guardarCambios()">Guardar Cambios</button>
+  </div>
+</div>
+
+
+<!-- Modal para Eliminar -->
+<div id="modal-eliminar" class="modal">
+  <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Eliminar Alumno</h2>
+      <p>¿Seguro que deseas eliminar al alumno con DNI: <span id="dni-eliminar"></span>?</p>
+      <button onclick="confirmarEliminar()">Eliminar</button>
+  </div>
+</div>
+
 <!-- partial -->
   <script  src="dist/script.js"></script>
-
+  <script src="./js/home.js"></script>
+  <script src="./js/alumno.js"></script>
 </body>
 </html>
