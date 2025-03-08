@@ -13,6 +13,12 @@ function abrirModalEliminar(dni) {
     modal.style.display = "block";
 }
 
+function abrirModalCrear() {
+    const modal = document.getElementById("modal-crear");
+    modal.classList.add("show");
+    modal.style.display = "block";
+}
+
 // Cerrar los modales cuando se haga clic en el botón de cerrar
 document.querySelectorAll(".modal .close").forEach(button => {
     button.addEventListener("click", function () {

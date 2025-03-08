@@ -1,7 +1,7 @@
-const API_URL = "http://localhost:7207/api/Alumno"; // Asegúrate de que la URL coincide con la de tu backend
+const API_URL = "http://localhost:7207/api/Alumno";
 
 // 🔹 Crear un nuevo alumno
-async function crearAlumno(alumno) {
+export async function crearAlumno(alumno) {
     try {
         const response = await fetch(API_URL, {
             method: "POST",
@@ -22,7 +22,7 @@ async function crearAlumno(alumno) {
 }
 
 // 🔹 Actualizar un alumno
-async function actualizarAlumno(dni) {
+export async function actualizarAlumno(dni) {
     const alumnoActualizado = {
         nombre: "Nuevo Nombre",
         apellido: "Nuevo Apellido",
@@ -50,6 +50,7 @@ async function actualizarAlumno(dni) {
         alert(error.message);
     }
 }
+
 
 // 🔹 Eliminar un alumno
 async function eliminarAlumno(dni) {

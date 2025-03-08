@@ -1,3 +1,6 @@
+const API_URL = "https://localhost:7207/api/Alumno"; 
+let dniSeleccionado = null; // Variable para almacenar el DNI seleccionado
+
 document.addEventListener("DOMContentLoaded", () => {
     obtenerAlumnos();
 });
@@ -29,15 +32,33 @@ document.addEventListener("click", function () {
     });
 });
 
+async function actualizarAlumno(alumnoActualizado, dni) {
+    try {
+        const response = await fetch(`${API_URL}/${dni}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(alumnoActualizado)
+        });
+
+        const mensaje = await response.text();
+        if (!response.ok) throw new Error(mensaje);
+
+        alert(mensaje);
+        obtenerAlumnos(); // Refrescar lista después de actualizar
+    } catch (error) {
+        console.error("Error:", error);
+        alert(error.message);
+    }
+}
+
 async function obtenerAlumnos() {
     try {
-        const response = await fetch("https://localhost:7207/api/Alumno", {
+        const response = await fetch(API_URL, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
             },
         });
-
         if (!response.ok) {
             throw new Error("Error al obtener alumnos");
         }
@@ -63,19 +84,23 @@ function mostrarAlumnos(alumnos) {
     
     alumnos.forEach(alumno => {
         const plan = alumno.alumnoPlanes?.$values[0] ?? {};
+        const estadoAlumno = alumno.diasAdicionales > 0 
+        ?  `<span class="status disabled">En deuda</span>`
+        : `<span class="status active">Al dia</span>`;
+        
         const alumnoHTML = `
             <tr class="products-row">
                 <td class="product-cell sales">${alumno.dni}</td>
-                <td class="product-cell sales">${alumno.planId ?? "N/A"}</td>
+                <td class="product-cell sales">${alumno.planId}</td>
                 <td class="product-cell sales">${alumno.nombre} ${alumno.apellido}</td>
                 <td class="product-cell sales">${alumno.domicilio ?? "N/A"}</td>
                 <td class="product-cell sales">${alumno.telefono ?? "N/A"}</td>
                 <td class="product-cell sales">${alumno.telefonoEmergencia ?? "N/A"}</td>
                 <td class="product-cell sales">${alumno.fechaRegistroFormateada}</td>
-                <td class="product-cell sales">${plan.fechaInicioFormateada ?? "N/A"}</td>
-                <td class="product-cell sales">${plan.fechaVencimientoFormateada ?? "N/A"}</td>
-                <td class="product-cell sales">${plan.plan?.nombre ?? "Sin Plan"}</td>
-                <td class="product-cell sales"><span class="status disabled">En deuda</span></td>
+                <td class="product-cell sales">${plan.fechaInicioFormateada}</td>
+                <td class="product-cell sales">${plan.fechaVencimientoFormateada}</td>
+                <td class="product-cell sales">${alumno.plan.nombre}</td>
+                <td class="product-cell sales">${estadoAlumno}</td>
                 <td class="product-cell sales">
                     <div class="dropdown">
                         <button class="dropdown-btn" type="button" data-dni="${alumno.dni}">
@@ -83,7 +108,8 @@ function mostrarAlumnos(alumnos) {
                         </button>
                         <ul class="dropdown-list" id="dropdown-${alumno.dni}">
                             <li><a class="dropdown-item actualizar" href="#" data-dni="${alumno.dni}">Actualizar</a></li>
-                            <li><a class="dropdown-item dropdown-danger eliminar" href="#" data-dni="${alumno.dni}">Eliminar</a></li>
+                            <li><a class="dropdown-item renovar" href="#" data-dni="${alumno.dni}">Renovar</a></li>
+                            <li><a class="dropdown-item actualizar" href="#" data-dni="${alumno.dni}">Ver Detalles</a></li>
                         </ul>
                     </div>
                 </td>
@@ -102,14 +128,48 @@ function mostrarAlumnos(alumnos) {
         });
     });
 
-    document.querySelectorAll(".eliminar").forEach(button => {
+    document.querySelectorAll(".renovar").forEach(button => {
         button.addEventListener("click", function (event) {
             event.preventDefault();
             const dni = this.dataset.dni;
-            abrirModalEliminar(dni);
+            abrirModalRenovar(dni);
         });
     });
 }
+
+// Cargar opciones de planes en el select
+async function cargarOpcionesDePlanes() {
+    let planes;
+    try{
+        const response = await fetch("https://localhost:7207/api/Planes", {
+            method: 'GET',
+            headers: {
+                'Content-Type':'application/json',
+            },
+        });
+        
+        if (!response.ok) throw new Error("Error al obtener datos de planes");
+
+        const data = await response.json();
+    
+        planes = data.$values;
+    }catch(error) {
+        console.error("Error:", error);
+        alert(error.message);
+    }
+    
+    const selectPlan = document.getElementById("plan-actualizar"); // Asegúrate de que este ID sea correcto
+    selectPlan.innerHTML = ""; // Limpiar opciones previas
+
+    
+    planes.forEach(plan => {
+        const option = document.createElement("option");
+        option.value = plan.planId; 
+        option.textContent = plan.nombre;
+        selectPlan.appendChild(option);
+    });
+}
+
 
 async function abrirModalActualizar(dni) {
     const dniInt = parseInt(dni, 10)
@@ -126,34 +186,24 @@ async function abrirModalActualizar(dni) {
         const alumno = await response.json();
 
         // Verifica que los elementos existen antes de modificarlos
-        const dniActualizar = document.getElementById("dni-actualizar");
-        const nombreActualizar = document.getElementById("nombre-actualizar");
-        const apellidoActualizar = document.getElementById("apellido-actualizar");
-        const domicilioActualizar = document.getElementById("domicilio-actualizar");
-        const telefonoActualizar = document.getElementById("telefono-actualizar");
-        const telefonoEmergenciaActualizar = document.getElementById("telefonoEmergencia-actualizar");
-        const planIdActualizar = document.getElementById("planId-actualizar");
-
-        if (!dniActualizar || !nombreActualizar || !apellidoActualizar || !domicilioActualizar || 
-            !telefonoActualizar || !telefonoEmergenciaActualizar || !planIdActualizar) {
-            throw new Error("Error: No se encontraron los campos del formulario");
-        }
-
-        // Llenar los campos del modal con los datos actuales del alumno
-        dniActualizar.textContent = alumno.dni;
-        nombreActualizar.value = alumno.nombre;
-        apellidoActualizar.value = alumno.apellido;
-        domicilioActualizar.value = alumno.domicilio;
-        telefonoActualizar.value = alumno.telefono;
-        telefonoEmergenciaActualizar.value = alumno.telefonoEmergencia;
-        planIdActualizar.value = alumno.planId ?? "";
+        document.getElementById("dni-actualizar").textContent = alumno.dni;
+        document.getElementById("nombre-actualizar").value = alumno.nombre;
+        document.getElementById("apellido-actualizar").value = alumno.apellido;
+        document.getElementById("domicilio-actualizar").value = alumno.domicilio;
+        document.getElementById("telefono-actualizar").value = alumno.telefono;
+        document.getElementById("telefonoEmergencia-actualizar").value = alumno.telefonoEmergencia;
+        document.getElementById("planPrevioAsignado").innerText = alumno.plan.nombre;
+        await cargarOpcionesDePlanes();
+    
+        // Seleccionar el plan actual en el <select>
+        document.getElementById("plan-actualizar").value = alumno.plan.planId;
 
         // Mostrar el modal
         const modal = document.getElementById("modal-actualizar");
         if (!modal) throw new Error("Error: Modal de actualización no encontrado");
 
         modal.classList.add("show");
-        modal.style.display = "block";
+        modal.style.display = "flex";
         modal.setAttribute("aria-hidden", "false"); // Accesibilidad
     } catch (error) {
         console.error("Error:", error);
@@ -161,8 +211,7 @@ async function abrirModalActualizar(dni) {
     }
 }
 
-
-async function guardarCambios() {
+async function guardarCambiosActualizar() {
     const dni = document.getElementById("dni-actualizar").textContent;
     const dniInt = parseInt(dni, 10)
     const alumnoActualizado = {
@@ -171,25 +220,16 @@ async function guardarCambios() {
         domicilio: document.getElementById("domicilio-actualizar").value,
         telefono: document.getElementById("telefono-actualizar").value,
         telefonoEmergencia: document.getElementById("telefonoEmergencia-actualizar").value,
-        planId: parseInt(document.getElementById("planId-actualizar").value, 10)
+        planId: parseInt(document.getElementById("plan-actualizar").value, 10)
     };
-
-    try {
-        const response = await fetch(`https://localhost:7207/api/Alumno/${dniInt}`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(alumnoActualizado)
-        });
-
-        const mensaje = await response.text();
-        if (!response.ok) throw new Error(mensaje);
-
-        alert(mensaje);
         
-        // Cerrar el modal después de actualizar
+    try {
+        const response = await actualizarAlumno(alumnoActualizado, dniInt);
+
+        alert("Alumno actualizado con éxito");
+        
         cerrarModal("modal-actualizar");
 
-        // Recargar la lista de alumnos
         obtenerAlumnos();
     } catch (error) {
         console.error("Error:", error);
@@ -197,14 +237,71 @@ async function guardarCambios() {
     }
 }
 
+// Función para abrir el modal y cargar los datos del alumno
+async function abrirModalRenovar(dni, diasARestar) {
+    dniSeleccionado = dni; // Guardar el DNI en la variable global
+    document.getElementById("dni-renovar").innerText = dni; // Mostrar DNI en el modal
+    let alumno;
+    try {
+        let response = await fetch(`https://localhost:7207/api/Alumno/${dniSeleccionado}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        
+        alumno = await response.json();
 
-function abrirModalEliminar(dni) {
-    const modal = document.getElementById("modal-eliminar");
-    document.getElementById("dni-eliminar").textContent = dni;
-    modal.classList.add("show");
-    modal.style.display = "block";
+    } catch (error) {
+        alert("Error en la solicitud: " + error.message);
+    }
+    
+    let fechaActual = new Date();
+    let fechaVencimiento = new Date();
+    fechaVencimiento.setMonth(fechaVencimiento.getMonth() + 1); // Sumar un mes a la fecha actual
+    
+    // Asignar valores a los elementos del modal
+    document.getElementById("fhInicio-renovar").innerText = formatFecha(fechaActual);
+    document.getElementById("fhVencimiento-renovar").innerText = formatFecha(fechaVencimiento);
+    document.getElementById("diasDeuda-renovar").innerText = alumno.diasAdicionales;
+
+    document.getElementById("modal-renovar").style.display = "flex"; // Mostrar el modal
 }
 
+// Función para formatear fecha (YYYY-MM-DD)
+function formatFecha(fecha) {
+    return fecha.toISOString().split("T")[0];
+}
+
+// Función para enviar la solicitud de renovación
+async function confirmarRenovar() {
+    if (!dniSeleccionado) {
+        alert("Error: No se ha seleccionado ningún alumno.");
+        return;
+    }
+
+    let diasARestar = document.getElementById("dias-restar").value;
+
+    try {
+        let response = await fetch(`https://localhost:7207/api/AlumnoPlan/renovar/${dniSeleccionado}/${diasARestar}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+
+        let result = await response.text();
+
+        if (response.ok) {
+            alert(result); // Mostrar respuesta del servidor
+            cerrarModal("modal-renovar");
+        } else {
+            alert("Error al renovar suscripción: " + result);
+        }
+    } catch (error) {
+        alert("Error en la solicitud: " + error.message);
+    }
+}
 
 function cerrarModal(id) {
     const modal = document.getElementById(id);

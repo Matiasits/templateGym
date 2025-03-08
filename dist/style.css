@@ -497,18 +497,18 @@ body {
   margin-right: 4px;
 }
 .status.active {
-  color: #2ba972;
+  color: #e2dede;
   background-color: rgba(43, 169, 114, 0.2);
 }
 .status.active:before {
-  background-color: #2ba972;
+  background-color: #15db85;
 }
 .status.disabled {
-  color: #59719d;
-  background-color: rgba(89, 113, 157, 0.2);
+  color: #e2dede;
+  background-color: rgba(233, 14, 14, 0.2);
 }
 .status.disabled:before {
-  background-color: #59719d;
+  background-color: #ff0000;
 }
 
 .gridView {
@@ -602,4 +602,45 @@ body {
 }
 .gridView .cell-label {
   opacity: 0.6;
+}
+
+.botones-alumnos{
+  text-decoration: none; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  margin: 10px;
+}
+
+#container-planPrevioAsignado {
+  margin: 20px 0 20px 0;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  background-color: #1c1c2b; /* Color oscuro como el modal */
+  color: #fff; /* Texto en blanco */
+  border: 1px solid #555; /* Borde sutil */
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  appearance: none; /* Quita el estilo nativo del navegador */
+  cursor: pointer;
+}
+
+/* Agregar una flecha personalizada */
+select::after {
+  content: '▼';
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+}
+
+/* Hover y focus */
+select:hover, select:focus {
+  border-color: #007bff;
+  background-color: #252540;
 }

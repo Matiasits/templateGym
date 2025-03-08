@@ -47,7 +47,8 @@
           <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
         </svg>
       </button>
-      <button class="app-content-headerButton">Añadir Alumno</button>
+      <a class="app-content-headerButton botones-alumnos crear" id="crearAlumno">Añadir Alumno</a>
+      <a target="_blank" class="app-content-headerButton botones-alumnos" href="./template/registroAsistencia.html">Tomar Asistencia</a>
     </div>
     <div class="app-content-actions">
       <input class="search-bar" placeholder="Buscar..." type="text">
@@ -139,7 +140,7 @@
 <!-- Modal para Actualizar -->
 <div id="modal-actualizar" class="modal">
   <div class="modal-content">
-      <span class="close">&times;</span>
+      <span class="close-modal" onclick="cerrarModal('modal-actualizar')">&times;</span>
       <h2>Actualizar Alumno</h2>
       <p>DNI: <span id="dni-actualizar"></span></p>
       
@@ -158,27 +159,65 @@
       <label>Teléfono Emergencia:</label>
       <input type="text" id="telefonoEmergencia-actualizar">
       
-      <label>Plan ID:</label>
-      <input type="number" id="planId-actualizar">
+      <label id="container-planPrevioAsignado">Plan actual: <span id="planPrevioAsignado"></span></label>
+      <select id="plan-actualizar">
+        <!-- Opciones generadas dinámicamente -->
+      </select>
 
-      <button onclick="guardarCambios()">Guardar Cambios</button>
+      <button class="boton-submit-modal" onclick="guardarCambiosActualizar()">Guardar Cambios</button>
   </div>
 </div>
 
-
-<!-- Modal para Eliminar -->
-<div id="modal-eliminar" class="modal">
+<!-- Modal para Renovar Suscripción -->
+<div id="modal-renovar" class="modal">
   <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2>Eliminar Alumno</h2>
-      <p>¿Seguro que deseas eliminar al alumno con DNI: <span id="dni-eliminar"></span>?</p>
-      <button onclick="confirmarEliminar()">Eliminar</button>
+      <span class="close-modal" onclick="cerrarModal('modal-renovar')">&times;</span>
+      <h2>Renovar Alumno</h2>
+      <p>¿Seguro que deseas renovar al alumno con DNI: <span id="dni-renovar"></span>?</p>
+      <p>Nueva fecha de inicio: <span id="fhInicio-renovar"></span></p>
+      <p>Próximo vencimiento: <span id="fhVencimiento-renovar"></span></p>
+      <p>Días en deuda: <span id="diasDeuda-renovar"></span></p>
+      
+      <label for="dias-restar">Días a restar de la deuda:</label>
+      <input type="number" id="dias-restar" min="0" value="0">
+
+      <button class="btn-danger boton-submit-modal" onclick="confirmarRenovar()">Renovar</button>
   </div>
 </div>
+ 
+ 
+ 
+<div id="modal-crear" class="modal">
+  <div class="modal-content">
+      <span class="close-modal" onclick="cerrarModal('modal-crear')">&times;</span>
+      <h2>Crear Alumno</h2>
+      
+      <label>DNI:</label>
+      <input type="number" id="dni-crear">
+      <label>Nombre:</label>
+      <input type="text" id="nombre-crear">
+      
+      <label>Apellido:</label>
+      <input type="text" id="apellido-crear">
+      
+      <label>Domicilio:</label>
+      <input type="text" id="domicilio-crear">
+      
+      <label>Teléfono:</label>
+      <input type="text" id="telefono-crear">
+      
+      <label>Teléfono Emergencia:</label>
+      <input type="text" id="telefonoEmergencia-crear">
+      
+      <label>Plan ID:</label>
+      <input type="number" id="planId-crear">
 
+      <button class="boton-submit-modal" id="guardarCambiosCrear">Añadir Alumno</button>
+  </div>
+</div>
 <!-- partial -->
   <script  src="dist/script.js"></script>
   <script src="./js/home.js"></script>
-  <script src="./js/alumno.js"></script>
+  <script src="./js/alumno/alumnoCreate.js"></script>
 </body>
 </html>
