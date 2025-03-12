@@ -28,20 +28,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Función para crear un alumno
     async function crearAlumno(alumno) {
-        console.log("Intentando crear alumno...");
         try {
             const response = await fetch("https://localhost:7207/api/Alumno", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(alumno)
             });
-
+            console.log(response.body)
             const mensaje = await response.text();
             if (!response.ok) throw new Error(mensaje);
 
-            console.log("Alumno creado:", mensaje);
             alert(mensaje);
-            obtenerAlumnos(); // Refrescar lista después de crear
+            obtenerAlumnos(); 
         } catch (error) {
             console.error("Error al crear alumno:", error);
             alert(error.message);
@@ -58,10 +56,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const telefono = document.getElementById("telefono-crear").value.trim();
         const domicilio = document.getElementById("domicilio-crear").value.trim();
         const telefonoEmergencia = document.getElementById("telefonoEmergencia-crear").value.trim();
+        const numeroPlanValue = document.getElementById("numeroPlan-crear").value.trim();
+        const numeroPlan = numeroPlanValue ? parseInt(numeroPlanValue) : 0;
         const planId = document.getElementById("planId-crear").value.trim();
 
         // Validación de los campos
-        if (!nombre || !apellido || !dni || !telefono || !direccion || !telefonoEmergencia || !planId) {
+        if (!nombre || !apellido || !dni || !planId) {
             alert("Todos los campos son obligatorios.");
             return;
         }
@@ -74,10 +74,10 @@ document.addEventListener('DOMContentLoaded', function() {
             telefono: telefono,
             domicilio: domicilio,
             telefonoEmergencia: telefonoEmergencia,
+            numeroPlan: numeroPlan,
             planId: parseInt(planId)
             
         };
-        console.log(alumnoData)
         await crearAlumno(alumnoData);
 
         modal.style.display = "none";

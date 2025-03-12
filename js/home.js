@@ -1,8 +1,22 @@
 const API_URL = "https://localhost:7207/api/Alumno"; 
-let dniSeleccionado = null; // Variable para almacenar el DNI seleccionado
+let dniSeleccionado = null;
+let currentPage = 1;
+const pageSize = 10;
 
 document.addEventListener("DOMContentLoaded", () => {
     obtenerAlumnos();
+    
+    document.getElementById("prevPage").addEventListener("click", () => {
+        if (currentPage > 1) {
+          currentPage--;
+          obtenerAlumnos();
+        }
+      });
+    
+    document.getElementById("nextPage").addEventListener("click", () => {
+      currentPage++;
+      obtenerAlumnos();
+    });
 });
 
 document.addEventListener("click", function (event) {
@@ -25,11 +39,13 @@ document.addEventListener("click", function (event) {
     dropdown.classList.toggle("active");
 });
 
-// Cerrar dropdowns si se hace clic fuera de ellos
-document.addEventListener("click", function () {
-    document.querySelectorAll(".dropdown-list").forEach(list => {
-        list.style.display = "none";
-    });
+document.addEventListener("click", function (event) {
+    const clickedInsideDropdown = event.target.closest(".dropdown");
+    if (!clickedInsideDropdown) {
+        document.querySelectorAll(".dropdown").forEach(drop => {
+            drop.classList.remove("active");
+        });
+    }
 });
 
 async function actualizarAlumno(alumnoActualizado, dni) {
@@ -53,7 +69,7 @@ async function actualizarAlumno(alumnoActualizado, dni) {
 
 async function obtenerAlumnos() {
     try {
-        const response = await fetch(API_URL, {
+        const response = await fetch(`${API_URL}?page=${currentPage}&pageSize=${pageSize}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -91,7 +107,7 @@ function mostrarAlumnos(alumnos) {
         const alumnoHTML = `
             <tr class="products-row">
                 <td class="product-cell sales">${alumno.dni}</td>
-                <td class="product-cell sales">${alumno.planId}</td>
+                <td class="product-cell sales">${alumno.numeroPlan}</td>
                 <td class="product-cell sales">${alumno.nombre} ${alumno.apellido}</td>
                 <td class="product-cell sales">${alumno.domicilio ?? "N/A"}</td>
                 <td class="product-cell sales">${alumno.telefono ?? "N/A"}</td>
@@ -109,7 +125,7 @@ function mostrarAlumnos(alumnos) {
                         <ul class="dropdown-list" id="dropdown-${alumno.dni}">
                             <li><a class="dropdown-item actualizar" href="#" data-dni="${alumno.dni}">Actualizar</a></li>
                             <li><a class="dropdown-item renovar" href="#" data-dni="${alumno.dni}">Renovar</a></li>
-                            <li><a class="dropdown-item actualizar" href="#" data-dni="${alumno.dni}">Ver Detalles</a></li>
+                            <li><a class="dropdown-item detalles" href="#" data-dni="${alumno.dni}">Ver Detalles</a></li>
                         </ul>
                     </div>
                 </td>
@@ -133,6 +149,14 @@ function mostrarAlumnos(alumnos) {
             event.preventDefault();
             const dni = this.dataset.dni;
             abrirModalRenovar(dni);
+        });
+    });
+    
+    document.querySelectorAll(".detalles").forEach(button => {
+        button.addEventListener("click", function (event) {
+            event.preventDefault();
+            const dni = this.dataset.dni;
+            abrirModalDetalles(dni);
         });
     });
 }
@@ -170,6 +194,45 @@ async function cargarOpcionesDePlanes() {
     });
 }
 
+async function abrirModalDetalles(dni) {
+    const dniInt = parseInt(dni, 10)
+    try {
+        const response = await fetch(`https://localhost:7207/api/Alumno/${dniInt}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        
+        if (!response.ok) throw new Error("Error al obtener datos del alumno");
+
+        const alumno = await response.json();
+
+        // Verifica que los elementos existen antes de modificarlos
+        document.getElementById("dni-detalles").innerText = alumno.dni;
+        document.getElementById("nombre-detalles").innerText = alumno.nombre;
+        document.getElementById("apellido-detalles").innerText = alumno.apellido;
+        document.getElementById("domicilio-detalles").innerText = alumno.domicilio;
+        document.getElementById("telefono-detalles").innerText = alumno.telefono;
+        document.getElementById("telefonoEmergencia-detalles").innerText = alumno.telefonoEmergencia;
+        document.getElementById("fechaIngreso-detalles").innerText = alumno.fechaRegistroFormateada;
+        document.getElementById("fechaInicioPlan-detalles").innerText = alumno.alumnoPlanes.$values[0].fechaInicioFormateada;
+        document.getElementById("fechaVencimientoPlan-detalles").innerText = alumno.alumnoPlanes.$values[0].fechaVencimientoFormateada;
+        document.getElementById("tipoPlan-detalles").innerText = alumno.plan.nombre;
+        document.getElementById("diasDeuda-detalles").innerText = alumno.telefonoEmergencia;
+        
+        // Mostrar el modal
+        const modal = document.getElementById("modal-detalles");
+        if (!modal) throw new Error("Error: Modal de actualización no encontrado");
+
+        modal.classList.add("show");
+        modal.style.display = "flex";
+        modal.setAttribute("aria-hidden", "false"); // Accesibilidad
+    } catch (error) {
+        console.error("Error:", error);
+        alert(error.message);
+    }
+}
 
 async function abrirModalActualizar(dni) {
     const dniInt = parseInt(dni, 10)

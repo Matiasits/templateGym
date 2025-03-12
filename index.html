@@ -132,10 +132,66 @@
             <!-- Aquí se agregarán dinámicamente las filas -->
         </tbody>
       </table>
+      
+      <div class="pagination">
+        <a class="app-content-headerButton botones-alumnos" id="prevPage">Anterior</a>
+        <span id="pageInfo">Página 1</span>
+        <a class="app-content-headerButton botones-alumnos" id="nextPage">Siguiente</a>
+      </div>
+    
     </div>
   </div>
 </div>
 
+
+<!-- Modal para Actualizar -->
+<div id="modal-detalles" class="modal">
+  <div class="modal-content">
+      <span class="close-modal" onclick="cerrarModal('modal-detalles')">&times;</span>
+      <h2>Detalle de Alumno</h2>
+      <p>DNI: <span id="dni-detalles"></span></p>
+      
+      <label>Nombre:
+        <span class="detalle-alumno-texto" type="text" id="nombre-detalles"></span>
+      </label>
+      
+      <label>Apellido:
+        <span type="text" id="apellido-detalles" class="detalle-alumno-texto"></span>
+      </label>
+      
+      <label>Domicilio:
+        <span type="text" id="domicilio-detalles" class="detalle-alumno-texto"></span>
+      </label>
+      
+      <label>Teléfono: 
+        <span type="text" id="telefono-detalles" class="detalle-alumno-texto"></span>
+      </label>
+      
+      <label>Teléfono Emergencia:
+        <span type="text" id="telefonoEmergencia-detalles" class="detalle-alumno-texto"></span>
+      </label>
+      
+      <label>Fecha de ingreso:
+        <span type="text" id="fechaIngreso-detalles" class="detalle-alumno-texto"></span>
+      </label>
+      
+      <label>Fecha Inicio Plan:
+        <span type="text" id="fechaInicioPlan-detalles" class="detalle-alumno-texto"></span>
+      </label>
+      
+      <label>Fecha Vencimiento Plan:
+        <span type="text" id="fechaVencimientoPlan-detalles" class="detalle-alumno-texto"></span>
+      </label>
+      
+      <label>Tipo de Plan:
+        <span type="text" id="tipoPlan-detalles" class="detalle-alumno-texto"></span>
+      </label>
+  
+      <label>Dias en deuda:
+        <span type="text" id="diasDeuda-detalles" class="detalle-alumno-texto"></span>
+      </label>
+  </div>
+</div>
 
 <!-- Modal para Actualizar -->
 <div id="modal-actualizar" class="modal">
@@ -208,6 +264,9 @@
       
       <label>Teléfono Emergencia:</label>
       <input type="text" id="telefonoEmergencia-crear">
+      
+      <label>Numero de plan:</label>
+      <input type="text" id="numeroPlan-crear">
       
       <label>Plan ID:</label>
       <input type="number" id="planId-crear">

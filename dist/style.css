@@ -644,3 +644,22 @@ select:hover, select:focus {
   border-color: #007bff;
   background-color: #252540;
 }
+
+.detalle-alumno-texto{
+  margin-left: 10px;
+  
+}
+
+.pagination {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination span {
+  color: var(--app-content-main-color);
+  font-size: 15px;
+  line-height: 32px;
+  margin: 0;
+}
