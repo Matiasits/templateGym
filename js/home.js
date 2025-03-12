@@ -6,6 +6,10 @@ const pageSize = 10;
 document.addEventListener("DOMContentLoaded", () => {
     obtenerAlumnos();
     
+    document.getElementById("buscadorInput").addEventListener("input", () => {
+        obtenerAlumnos();
+    });
+    
     document.getElementById("prevPage").addEventListener("click", () => {
         if (currentPage > 1) {
           currentPage--;
@@ -98,9 +102,23 @@ async function obtenerAlumnos() {
 
 function mostrarAlumnos(alumnos) {
     const alumnosContainer = document.getElementById("alumnos-container");
-    alumnosContainer.innerHTML = ""; // Limpiar contenido previo
+    alumnosContainer.innerHTML = "";
     
-    alumnos.forEach(alumno => {
+    const textoBusqueda = document.getElementById("buscadorInput").value.toLowerCase();
+    console.log(textoBusqueda)
+    let alumnosFiltrados = alumnos.filter(alumno => {
+        const nombreCompleto = `${alumno.nombre} ${alumno.apellido}`.toLowerCase();
+        const dni = alumno.dni.toString();
+        const numeroPlan = alumno.numeroPlan.toString();
+        
+        return (
+            nombreCompleto.includes(textoBusqueda) || 
+            dni.includes(textoBusqueda) ||
+            numeroPlan.includes(textoBusqueda)
+        );
+    });
+    
+    alumnosFiltrados.forEach(alumno => {
         const plan = alumno.alumnoPlanes?.$values[0] ?? {};
         const estadoAlumno = alumno.diasAdicionales > 0 
         ?  `<span class="status disabled">En deuda</span>`

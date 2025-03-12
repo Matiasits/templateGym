@@ -217,14 +217,14 @@ body {
 }
 .app-content-actions {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   padding: 16px 4px;
 }
 .app-content-actions-wrapper {
   display: flex;
+  justify-content: center;
   align-items: center;
-  margin-left: auto;
 }
 @media screen and (max-width: 520px) {
   .app-content-actions {
@@ -241,6 +241,7 @@ body {
 }
 
 .search-bar {
+  margin-top: 0px;
   background-color: var(--app-content-secondary-color);
   border: 1px solid var(--app-content-secondary-color);
   color: var(--app-content-main-color);
