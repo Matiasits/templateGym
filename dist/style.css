@@ -647,7 +647,6 @@ select:hover, select:focus {
 
 .detalle-alumno-texto{
   margin-left: 10px;
-  
 }
 
 .pagination {
@@ -662,4 +661,11 @@ select:hover, select:focus {
   font-size: 15px;
   line-height: 32px;
   margin: 0;
+}
+
+.modal-content label {
+  display: block;
+  text-align: left;
+  margin-top: 10px;
+  font-weight: 200;
 }

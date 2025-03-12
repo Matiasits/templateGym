@@ -87,6 +87,8 @@ async function obtenerAlumnos() {
         if (!Array.isArray(listaAlumnos)) {
             return;
         }
+        
+        document.getElementById("pageInfo").textContent = `Página ${currentPage}`;
 
         mostrarAlumnos(listaAlumnos);
     } catch (error) {
@@ -111,10 +113,6 @@ function mostrarAlumnos(alumnos) {
                 <td class="product-cell sales">${alumno.nombre} ${alumno.apellido}</td>
                 <td class="product-cell sales">${alumno.domicilio ?? "N/A"}</td>
                 <td class="product-cell sales">${alumno.telefono ?? "N/A"}</td>
-                <td class="product-cell sales">${alumno.telefonoEmergencia ?? "N/A"}</td>
-                <td class="product-cell sales">${alumno.fechaRegistroFormateada}</td>
-                <td class="product-cell sales">${plan.fechaInicioFormateada}</td>
-                <td class="product-cell sales">${plan.fechaVencimientoFormateada}</td>
                 <td class="product-cell sales">${alumno.plan.nombre}</td>
                 <td class="product-cell sales">${estadoAlumno}</td>
                 <td class="product-cell sales">
@@ -210,6 +208,7 @@ async function abrirModalDetalles(dni) {
 
         // Verifica que los elementos existen antes de modificarlos
         document.getElementById("dni-detalles").innerText = alumno.dni;
+        document.getElementById("numeroPlan-detalles").innerText = alumno.numeroPlan;
         document.getElementById("nombre-detalles").innerText = alumno.nombre;
         document.getElementById("apellido-detalles").innerText = alumno.apellido;
         document.getElementById("domicilio-detalles").innerText = alumno.domicilio;
@@ -219,7 +218,7 @@ async function abrirModalDetalles(dni) {
         document.getElementById("fechaInicioPlan-detalles").innerText = alumno.alumnoPlanes.$values[0].fechaInicioFormateada;
         document.getElementById("fechaVencimientoPlan-detalles").innerText = alumno.alumnoPlanes.$values[0].fechaVencimientoFormateada;
         document.getElementById("tipoPlan-detalles").innerText = alumno.plan.nombre;
-        document.getElementById("diasDeuda-detalles").innerText = alumno.telefonoEmergencia;
+        document.getElementById("diasDeuda-detalles").innerText = alumno.diasAdicionales;
         
         // Mostrar el modal
         const modal = document.getElementById("modal-detalles");
