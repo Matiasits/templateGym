@@ -48,7 +48,7 @@
             document.body.classList.remove("bg-danger", "bg-success"); // Limpia el fondo anterior
         
             try {
-                const response = await fetch("https://localhost:7207/api/Asistencias/registrar", {
+                const response = await fetch("https://backendgym-qbkn.onrender.com/api/Asistencias/registrar", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"

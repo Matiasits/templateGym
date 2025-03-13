@@ -1,4 +1,4 @@
-const API_URL = "https://localhost:7207/api/Alumno"; 
+const API_URL = "https://backendgym-qbkn.onrender.com/api/Alumno"; 
 let dniSeleccionado = null;
 let currentPage = 1;
 const pageSize = 10;
@@ -181,7 +181,7 @@ function mostrarAlumnos(alumnos) {
 async function cargarOpcionesDePlanes() {
     let planes;
     try{
-        const response = await fetch("https://localhost:7207/api/Planes", {
+        const response = await fetch("https://backendgym-qbkn.onrender.com/api/Planes", {
             method: 'GET',
             headers: {
                 'Content-Type':'application/json',
@@ -213,7 +213,7 @@ async function cargarOpcionesDePlanes() {
 async function abrirModalDetalles(dni) {
     const dniInt = parseInt(dni, 10)
     try {
-        const response = await fetch(`https://localhost:7207/api/Alumno/${dniInt}`, {
+        const response = await fetch(`https://backendgym-qbkn.onrender.com/api/Alumno/${dniInt}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -254,7 +254,7 @@ async function abrirModalDetalles(dni) {
 async function abrirModalActualizar(dni) {
     const dniInt = parseInt(dni, 10)
     try {
-        const response = await fetch(`https://localhost:7207/api/Alumno/${dniInt}`, {
+        const response = await fetch(`https://backendgym-qbkn.onrender.com/api/Alumno/${dniInt}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -323,7 +323,7 @@ async function abrirModalRenovar(dni, diasARestar) {
     document.getElementById("dni-renovar").innerText = dni; // Mostrar DNI en el modal
     let alumno;
     try {
-        let response = await fetch(`https://localhost:7207/api/Alumno/${dniSeleccionado}`, {
+        let response = await fetch(`https://backendgym-qbkn.onrender.com/api/Alumno/${dniSeleccionado}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -363,7 +363,7 @@ async function confirmarRenovar() {
     let diasARestar = document.getElementById("dias-restar").value;
 
     try {
-        let response = await fetch(`https://localhost:7207/api/AlumnoPlan/renovar/${dniSeleccionado}/${diasARestar}`, {
+        let response = await fetch(`https://backendgym-qbkn.onrender.com/api/AlumnoPlan/renovar/${dniSeleccionado}/${diasARestar}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"

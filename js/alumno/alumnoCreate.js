@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Función para crear un alumno
     async function crearAlumno(alumno) {
         try {
-            const response = await fetch("https://localhost:7207/api/Alumno", {
+            const response = await fetch("https://backendgym-qbkn.onrender.com/api/Alumno", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(alumno)
