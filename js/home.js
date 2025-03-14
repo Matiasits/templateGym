@@ -272,6 +272,7 @@ async function abrirModalActualizar(dni) {
         document.getElementById("domicilio-actualizar").value = alumno.domicilio;
         document.getElementById("telefono-actualizar").value = alumno.telefono;
         document.getElementById("telefonoEmergencia-actualizar").value = alumno.telefonoEmergencia;
+        document.getElementById("numeroPlan-actualizar").value = alumno.numeroPlan;
         document.getElementById("planPrevioAsignado").innerText = alumno.plan.nombre;
         await cargarOpcionesDePlanes();
     
