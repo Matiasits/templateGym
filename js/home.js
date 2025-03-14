@@ -109,7 +109,7 @@ function mostrarAlumnos(alumnos) {
     let alumnosFiltrados = alumnos.filter(alumno => {
         const nombreCompleto = `${alumno.nombre} ${alumno.apellido}`.toLowerCase();
         const dni = alumno.dni.toString();
-        const numeroPlan = alumno.numeroPlan.toString();
+        const numeroPlan = alumno.numeroPlan?.toString();
         
         return (
             nombreCompleto.includes(textoBusqueda) || 
