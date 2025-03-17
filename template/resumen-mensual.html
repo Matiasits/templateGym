@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Resumen Mensual</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <link rel="icon" href="../dist/logoTGP.jpg">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+        }
+        #resumenContainer {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: auto;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        button {
+            display: block;
+            margin: 30px auto 0;
+            padding: 10px 20px;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #1976D2;
+        }
+    </style>
+</head>
+<body>
+
+<div id="resumenContainer">
+    <h2>Resumen Mensual de Asistencias</h2>
+    <p><strong>Total de alumnos:</strong> <span id="cantidadAlumnos">Cargando...</span></p>
+    <p><strong>Ganancia total:</strong> $<span id="gananciaTotal">Cargando...</span></p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>DNI</th>
+                <th>Nombre</th>
+                <th>Plan</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Vencimiento</th>
+                <th>Nombre de plan</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+        <tbody id="tablaAlumnosResumen">
+            <tr><td colspan="3">Cargando...</td></tr>
+        </tbody>
+    </table>
+
+    <button onclick="exportarResumenAPdf()">Exportar a PDF</button>
+</div>
+
+<script>
+    const API_URL = "https://backendgym-qbkn.onrender.com/api/Asistencias"; 
+
+    async function obtenerResumenMensual() {
+        try {
+            const response = await fetch(`${API_URL}/resumen-mensual`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error("Error al obtener resumen mensual");
+            }
+
+            let data = await response.json();
+            const datosAlumnos = data.$values ?? data; 
+            console.log(datosAlumnos)
+            
+            mostrarResumenMensual(datosAlumnos);
+        } catch (error) {
+            console.error("Error:", error);
+            document.getElementById("tablaAlumnosResumen").innerHTML = `<tr><td colspan="3">Error al cargar datos</td></tr>`;
+        }
+    }
+    
+
+    function mostrarResumenMensual(data) {
+        console.log("mostrar resumeno", data)
+        document.getElementById("cantidadAlumnos").textContent = data.cantidad;
+        document.getElementById("gananciaTotal").textContent = data.gananciaTotal.toFixed(2);
+
+        const tbody = document.getElementById("tablaAlumnosResumen");
+        tbody.innerHTML = "";
+
+        const alumnos = data.alumnos.$values;
+        
+        if (alumnos.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="3">No hay alumnos registrados en el último mes.</td></tr>`;
+            return;
+        }
+        
+        alumnos.forEach(alumno => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${alumno.dni ?? '-'}</td>
+                <td>${alumno.nombre ?? '-'}</td>
+                <td>${alumno.plan?.nombre ?? 'Sin plan'}</td>
+                <td>${alumno.alumnoPlanes.$values[0].fechaInicioFormateada}</td>
+                <td>${alumno.alumnoPlanes.$values[0].fechaVencimientoFormateada}</td>
+                <td>${alumno.plan?.nombre ?? 'Sin plan'}</td>
+                <td>$${alumno.plan?.precio?.toFixed(2) ?? '0.00'}</td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
+
+    async function exportarResumenAPdf() {
+        const resumenElement = document.getElementById("resumenContainer");
+
+        const canvas = await html2canvas(resumenElement, {
+            scale: 2
+        });
+
+        const imgData = canvas.toDataURL("image/png");
+        const pdf = new jspdf.jsPDF({
+            orientation: 'portrait',
+            unit: 'pt',
+            format: 'a4'
+        });
+
+        const imgProps = pdf.getImageProperties(imgData);
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        pdf.save("resumen_mensual.pdf");
+    }
+
+    // Llama al cargar la página
+    window.onload = obtenerResumenMensual;
+</script>
+
+</body>
+</html>
