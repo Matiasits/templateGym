@@ -9,9 +9,13 @@ function obtenerAsistenciasDelDia() {
             const contenedor = document.getElementById("asistencia-container");
             
             lista.innerHTML = "";
-            console.log(data);
     
             const listaAsistencias = data.$values;
+            
+            const tituloExistente = contenedor.querySelector('.titulo-asistencias');
+            if (tituloExistente) {
+                tituloExistente.remove();
+            }
             
             var cantidadAlumnos = listaAsistencias.length;
             const div = document.createElement('div');
@@ -51,4 +55,4 @@ function obtenerAsistenciasDelDia() {
 }
 
 obtenerAsistenciasDelDia();
-setInterval(obtenerAsistenciasDelDia, 600000); // cada 10 minutos
+setInterval(obtenerAsistenciasDelDia, 600000); 
