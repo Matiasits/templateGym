@@ -91,7 +91,6 @@
     <script>
         const sonidoError = new Audio("../dist/sound/beep-01a.mp3");
         const sonidoAdvertencia = new Audio("../dist/sound/beep-01a.mp3");
-
         document.getElementById("asistenciaForm").addEventListener("submit", async function(event) {
             event.preventDefault();
 
@@ -152,12 +151,21 @@
                         <strong>📊 Días Restantes:</strong> ${result.diasRestantes}<br>
                         <strong>➕ Días Adicionales:</strong> ${result.diasAdicionales} 
                     </div>`;
-
+                
+                console.log(result)
+                let tipoPlan = ''
+                if (result.esPlanTresVecesPorSemana) {
+                    tipoPlan = 'Estandar'
+                }
+                else{
+                    tipoPlan = 'Pase Libre'
+                }
+                
                 if (tieneDiasAdicionales) {
                     mensajeHTML += `
                         <div class="alert alert-warning">
                             <strong>⚠️ Advertencia:</strong> El alumno tiene <strong>${result.diasAdicionales} días adicionales</strong>.
-                            Debe regularizar su plan.
+                            Debe regularizar su plan. Su plan es ${tipoPlan}
                         </div>`;
                 }
 

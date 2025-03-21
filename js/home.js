@@ -251,6 +251,8 @@ async function abrirModalDetalles(dni) {
     }
 }
 
+let alumnoPlanesIdParaActualizar;
+let alumnoPlanIdParaActualizar;
 async function abrirModalActualizar(dni) {
     const dniInt = parseInt(dni, 10)
     try {
@@ -272,13 +274,17 @@ async function abrirModalActualizar(dni) {
         document.getElementById("domicilio-actualizar").value = alumno.domicilio;
         document.getElementById("telefono-actualizar").value = alumno.telefono;
         document.getElementById("telefonoEmergencia-actualizar").value = alumno.telefonoEmergencia;
+        document.getElementById("fechaInicio-actualizar").value = alumno.alumnoPlanes.$values[0].fechaInicioFormateada;
+        document.getElementById("fechaVencimiento-actualizar").value = alumno.alumnoPlanes.$values[0].fechaVencimientoFormateada;
+        document.getElementById("diasAdicionales-actualizar").value = alumno.diasAdicionales;
         document.getElementById("numeroPlan-actualizar").value = alumno.numeroPlan;
         document.getElementById("planPrevioAsignado").innerText = alumno.plan.nombre;
         await cargarOpcionesDePlanes();
     
         // Seleccionar el plan actual en el <select>
         document.getElementById("plan-actualizar").value = alumno.plan.planId;
-
+        alumnoPlanesIdParaActualizar = alumno.alumnoPlanes.$values[0].alumnoPlanId;
+        alumnoPlanIdParaActualizar = alumno.plan.planId;
         // Mostrar el modal
         const modal = document.getElementById("modal-actualizar");
         if (!modal) throw new Error("Error: Modal de actualización no encontrado");
@@ -301,7 +307,27 @@ async function guardarCambiosActualizar() {
         domicilio: document.getElementById("domicilio-actualizar").value,
         telefono: document.getElementById("telefono-actualizar").value,
         telefonoEmergencia: document.getElementById("telefonoEmergencia-actualizar").value,
-        planId: parseInt(document.getElementById("plan-actualizar").value, 10)
+        diasAdicionales: document.getElementById("diasAdicionales-actualizar").value,
+        planId: parseInt(document.getElementById("plan-actualizar").value, 10),
+        alumnoPlanes: [
+                {
+                alumnoPlanId: alumnoPlanesIdParaActualizar, 
+                fechaInicio: document.getElementById("fechaInicio-actualizar").value,
+                fechaVencimiento: document.getElementById("fechaVencimiento-actualizar").value,
+                plan: {
+                    planId: parseInt(document.getElementById("plan-actualizar").value),
+                    nombre: document.getElementById("planPrevioAsignado").textContent
+                  },
+                  alumno: {
+                    dni: parseInt(document.getElementById("dni-actualizar").textContent),
+                    nombre: document.getElementById("nombre-actualizar").value,
+                    apellido: document.getElementById("apellido-actualizar").value,
+                    telefono: document.getElementById("telefono-actualizar").value,
+                    domicilio: document.getElementById("domicilio-actualizar").value,
+                    telefonoEmergencia: document.getElementById("telefonoEmergencia-actualizar").value
+                    }
+            }
+        ]
     };
         
     try {

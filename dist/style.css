@@ -62,7 +62,7 @@ body {
 
 .sidebar {
   flex-basis: 200px;
-  max-width: 200px;
+  max-width: 300px;
   flex-shrink: 0;
   background-color: var(--sidebar);
   display: flex;
@@ -669,4 +669,106 @@ select:hover, select:focus {
   text-align: left;
   margin-top: 10px;
   font-weight: 200;
+}
+
+.titulo-asistencias {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px 16px;
+  color: var(--sidebar-link);
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+#lista-asistencias {
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  height: 90%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px;
+  /* Para Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #888 #101827;
+}
+
+/* Scrollbar para Chrome, Edge, Safari */
+#lista-asistencias::-webkit-scrollbar {
+width: 8px;
+}
+
+#lista-asistencias::-webkit-scrollbar-track {
+background: #101827;
+border-radius: 10px;
+}
+
+#lista-asistencias::-webkit-scrollbar-thumb {
+background: #888;
+border-radius: 10px;
+}
+
+#lista-asistencias::-webkit-scrollbar-thumb:hover {
+background: #555;
+}
+
+
+.example .form-control focus{
+	color: #000;
+}
+.example .second{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+	width: 200px;
+  background-color: var(--app-content-secondary-color);
+  border-radius: 4px;
+	margin: 10px;
+	padding: 10px;
+}
+.example .text1{
+  text-align: center;
+	font-size: 13px;
+    font-weight: 500;
+    color: var(--app-content-main-color);
+}
+.example .text2{
+	font-size: 13px;
+    font-weight: 500;
+    margin-left: 6px;
+    color: var(--app-content-main-color);
+}
+.example .text3{
+	font-size: 13px;
+    font-weight: 500;
+    margin-right: 4px;
+    color: #828386;
+}
+.example .text3o{
+	color: #00a5f4;
+
+}
+.example .text4{
+	font-size: 13px;
+    font-weight: 500;
+    color: #828386;
+}
+.example .text4i{
+	color: #00a5f4;
+}
+.example .text4o{
+	color: white;
+}
+.example .thumbup{
+	font-size: 13px;
+    font-weight: 500;
+    margin-right: 5px;
+}
+.example .thumbupo{
+	color: #17a2b8;
 }
