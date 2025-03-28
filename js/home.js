@@ -274,8 +274,7 @@ async function abrirModalEliminar(dni) {
         if (!response.ok) throw new Error("Error al obtener datos del alumno");
 
         const alumno = await response.json();
-
-        // Verifica que los elementos existen antes de modificarlos
+        
         document.getElementById("dni-eliminar").innerText = alumno.dni;
         document.getElementById("numeroPlan-eliminar").innerText = alumno.numeroPlan;
         document.getElementById("nombre-eliminar").innerText = alumno.nombre;
@@ -360,6 +359,7 @@ async function guardarCambiosActualizar() {
         telefonoEmergencia: document.getElementById("telefonoEmergencia-actualizar").value,
         diasAdicionales: document.getElementById("diasAdicionales-actualizar").value,
         planId: parseInt(document.getElementById("plan-actualizar").value, 10),
+        numeroPlan: parseInt(document.getElementById("numeroPlan-actualizar").value, 10),
         alumnoPlanes: [
                 {
                 alumnoPlanId: alumnoPlanesIdParaActualizar, 
