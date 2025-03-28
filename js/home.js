@@ -142,6 +142,7 @@ function mostrarAlumnos(alumnos) {
                             <li><a class="dropdown-item actualizar" href="#" data-dni="${alumno.dni}">Actualizar</a></li>
                             <li><a class="dropdown-item renovar" href="#" data-dni="${alumno.dni}">Renovar</a></li>
                             <li><a class="dropdown-item detalles" href="#" data-dni="${alumno.dni}">Ver Detalles</a></li>
+                            <li><a class="dropdown-item eliminar status disabled" href="#" data-dni="${alumno.dni}">Eliminar</a></li>
                         </ul>
                     </div>
                 </td>
@@ -173,6 +174,14 @@ function mostrarAlumnos(alumnos) {
             event.preventDefault();
             const dni = this.dataset.dni;
             abrirModalDetalles(dni);
+        });
+    });
+    
+    document.querySelectorAll(".eliminar").forEach(button => {
+        button.addEventListener("click", function (event) {
+            event.preventDefault();
+            const dni = this.dataset.dni;
+            abrirModalEliminar(dni);
         });
     });
 }
@@ -240,6 +249,48 @@ async function abrirModalDetalles(dni) {
         
         // Mostrar el modal
         const modal = document.getElementById("modal-detalles");
+        if (!modal) throw new Error("Error: Modal de actualización no encontrado");
+
+        modal.classList.add("show");
+        modal.style.display = "flex";
+        modal.setAttribute("aria-hidden", "false"); // Accesibilidad
+    } catch (error) {
+        console.error("Error:", error);
+        alert(error.message);
+    }
+}
+
+async function abrirModalEliminar(dni) {
+    const dniInt = parseInt(dni, 10)
+    dniSeleccionado = dniInt
+    try {
+        const response = await fetch(`https://backendgym-qbkn.onrender.com/api/Alumno/${dniInt}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        
+        if (!response.ok) throw new Error("Error al obtener datos del alumno");
+
+        const alumno = await response.json();
+
+        // Verifica que los elementos existen antes de modificarlos
+        document.getElementById("dni-eliminar").innerText = alumno.dni;
+        document.getElementById("numeroPlan-eliminar").innerText = alumno.numeroPlan;
+        document.getElementById("nombre-eliminar").innerText = alumno.nombre;
+        document.getElementById("apellido-eliminar").innerText = alumno.apellido;
+        document.getElementById("domicilio-eliminar").innerText = alumno.domicilio;
+        document.getElementById("telefono-eliminar").innerText = alumno.telefono;
+        document.getElementById("telefonoEmergencia-eliminar").innerText = alumno.telefonoEmergencia;
+        document.getElementById("fechaIngreso-eliminar").innerText = alumno.fechaRegistroFormateada;
+        document.getElementById("fechaInicioPlan-eliminar").innerText = alumno.alumnoPlanes.$values[0].fechaInicioFormateada;
+        document.getElementById("fechaVencimientoPlan-eliminar").innerText = alumno.alumnoPlanes.$values[0].fechaVencimientoFormateada;
+        document.getElementById("tipoPlan-eliminar").innerText = alumno.plan.nombre;
+        document.getElementById("diasDeuda-eliminar").innerText = alumno.diasAdicionales;
+        
+        // Mostrar el modal
+        const modal = document.getElementById("modal-eliminar");
         if (!modal) throw new Error("Error: Modal de actualización no encontrado");
 
         modal.classList.add("show");
@@ -404,6 +455,34 @@ async function confirmarRenovar() {
             cerrarModal("modal-renovar");
         } else {
             alert("Error al renovar suscripción: " + result);
+        }
+    } catch (error) {
+        alert("Error en la solicitud: " + error.message);
+    }
+}
+
+// Función para enviar la solicitud de eliminacion
+async function confirmarEliminar() {
+    if (!dniSeleccionado) {
+        alert("Error: No se ha seleccionado ningún alumno.");
+        return;
+    }
+
+    try {
+        let response = await fetch(`https://backendgym-qbkn.onrender.com/api/Alumno/${dniSeleccionado}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+
+        let result = await response.text();
+
+        if (response.ok) {
+            alert(result); // Mostrar respuesta del servidor
+            cerrarModal("modal-eliminar");
+        } else {
+            alert("Error al eliminar: " + result);
         }
     } catch (error) {
         alert("Error en la solicitud: " + error.message);

@@ -219,6 +219,59 @@
   </div>
 </div>
  
+<!-- Modal para Renovar Suscripción -->
+<div id="modal-eliminar" class="modal">
+  <div class="modal-content">
+      <span class="close-modal" onclick="cerrarModal('modal-eliminar')">&times;</span>
+      <h2>Eliminar Alumno</h2>
+      <p>¿Seguro que deseas eliminar al alumno con DNI: <span id="dni-eliminar"></span>?</p>
+      <label>Numero de plan:
+        <span class="detalle-alumno-texto" type="text" id="numeroPlan-eliminar"></span>
+      </label>
+      
+      <label>Nombre:
+        <span class="detalle-alumno-texto" type="text" id="nombre-eliminar"></span>
+      </label>
+      
+      <label>Apellido:
+        <span type="text" id="apellido-eliminar" class="detalle-alumno-texto"></span>
+      </label>
+      
+      <label>Domicilio:
+        <span type="text" id="domicilio-eliminar" class="detalle-alumno-texto"></span>
+      </label>
+      
+      <label>Teléfono: 
+        <span type="text" id="telefono-eliminar" class="detalle-alumno-texto"></span>
+      </label>
+      
+      <label>Teléfono Emergencia:
+        <span type="text" id="telefonoEmergencia-eliminar" class="detalle-alumno-texto"></span>
+      </label>
+      
+      <label>Fecha de ingreso:
+        <span type="text" id="fechaIngreso-eliminar" class="detalle-alumno-texto"></span>
+      </label>
+      
+      <label>Fecha Inicio Plan:
+        <span type="text" id="fechaInicioPlan-eliminar" class="detalle-alumno-texto"></span>
+      </label>
+      
+      <label>Fecha Vencimiento Plan:
+        <span type="text" id="fechaVencimientoPlan-eliminar" class="detalle-alumno-texto"></span>
+      </label>
+      
+      <label>Tipo de Plan:
+        <span type="text" id="tipoPlan-eliminar" class="detalle-alumno-texto"></span>
+      </label>
+  
+      <label>Dias en deuda:
+        <span type="text" id="diasDeuda-eliminar" class="detalle-alumno-texto"></span>
+      </label>
+      
+      <button class="btn-danger boton-submit-modal" onclick="confirmarEliminar()">Eliminar</button>
+  </div>
+</div>
  
  
 <div id="modal-crear" class="modal">
