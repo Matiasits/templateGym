@@ -484,6 +484,8 @@ async function confirmarEliminar() {
         } else {
             alert("Error al eliminar: " + result);
         }
+        
+        obtenerAlumnos();
     } catch (error) {
         alert("Error en la solicitud: " + error.message);
     }
