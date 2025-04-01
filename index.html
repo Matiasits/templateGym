@@ -163,43 +163,50 @@
 <!-- Modal para Actualizar -->
 <div id="modal-actualizar" class="modal">
   <div class="modal-content">
-      <span class="close-modal" onclick="cerrarModal('modal-actualizar')">&times;</span>
-      <h2>Actualizar Alumno</h2>
-      <p>DNI: <span id="dni-actualizar"></span></p>
+    <span class="close-modal" onclick="cerrarModal('modal-actualizar')">&times;</span>
+    <h2>Actualizar Alumno</h2>
+    <p>DNI: <span id="dni-actualizar"></span></p>
+    
+    <div class="division">
+      <div>
+        
+        <label>Nombre:</label>
+        <input type="text" id="nombre-actualizar">
+        
+        <label>Apellido:</label>
+        <input type="text" id="apellido-actualizar">
+        
+        <label>Domicilio:</label>
+        <input type="text" id="domicilio-actualizar">
+        
+        <label>Teléfono:</label>
+        <input type="text" id="telefono-actualizar">
+        
+        <label>Teléfono Emergencia:</label>
+        <input type="text" id="telefonoEmergencia-actualizar">
+      </div>
       
-      <label>Nombre:</label>
-      <input type="text" id="nombre-actualizar">
-      
-      <label>Apellido:</label>
-      <input type="text" id="apellido-actualizar">
-      
-      <label>Domicilio:</label>
-      <input type="text" id="domicilio-actualizar">
-      
-      <label>Teléfono:</label>
-      <input type="text" id="telefono-actualizar">
-      
-      <label>Teléfono Emergencia:</label>
-      <input type="text" id="telefonoEmergencia-actualizar">
-      
+      <div>
       <label>Fecha de inicio:</label>
-      <input type="text" id="fechaInicio-actualizar">
+        <input type="text" id="fechaInicio-actualizar">
+        
+        <label>Fecha de Vencimiento:</label>
+        <input type="text" id="fechaVencimiento-actualizar">
+        
+        <label>Dias adicionales:</label>
+        <input type="text" id="diasAdicionales-actualizar">
+        
+        <label>Numero de Plan:</label>
+        <input type="text" id="numeroPlan-actualizar">
+        
+        <label id="container-planPrevioAsignado">Plan actual: <span id="planPrevioAsignado"></span></label>
+        <select id="plan-actualizar">
+          <!-- Opciones generadas dinámicamente -->
+        </select>
+      </div>
+    </div>
+    <button class="boton-submit-modal" onclick="guardarCambiosActualizar()">Guardar Cambios</button>
       
-      <label>Fecha de Vencimiento:</label>
-      <input type="text" id="fechaVencimiento-actualizar">
-      
-      <label>Dias adicionales:</label>
-      <input type="text" id="diasAdicionales-actualizar">
-      
-      <label>Numero de Plan:</label>
-      <input type="text" id="numeroPlan-actualizar">
-      
-      <label id="container-planPrevioAsignado">Plan actual: <span id="planPrevioAsignado"></span></label>
-      <select id="plan-actualizar">
-        <!-- Opciones generadas dinámicamente -->
-      </select>
-
-      <button class="boton-submit-modal" onclick="guardarCambiosActualizar()">Guardar Cambios</button>
   </div>
 </div>
 
@@ -280,29 +287,34 @@
       <span class="close-modal" onclick="cerrarModal('modal-crear')">&times;</span>
       <h2>Crear Alumno</h2>
       
-      <label>DNI:</label>
-      <input type="number" id="dni-crear">
-      <label>Nombre:</label>
-      <input type="text" id="nombre-crear">
-      
-      <label>Apellido:</label>
-      <input type="text" id="apellido-crear">
-      
-      <label>Domicilio:</label>
-      <input type="text" id="domicilio-crear">
-      
-      <label>Teléfono:</label>
-      <input type="text" id="telefono-crear">
-      
-      <label>Teléfono Emergencia:</label>
-      <input type="text" id="telefonoEmergencia-crear">
-      
-      <label>Numero de plan:</label>
-      <input type="text" id="numeroPlan-crear">
-      
-      <label>Plan ID:</label>
-      <input type="number" id="planId-crear">
-
+      <div class="division">
+        <div>
+          <label>DNI:</label>
+          <input type="number" id="dni-crear">
+          <label>Nombre:</label>
+          <input type="text" id="nombre-crear">
+          
+          <label>Apellido:</label>
+          <input type="text" id="apellido-crear">
+          
+          <label>Domicilio:</label>
+          <input type="text" id="domicilio-crear">
+        </div>
+        <div>
+          <label>Teléfono:</label>
+          <input type="text" id="telefono-crear">
+          
+          <label>Teléfono Emergencia:</label>
+          <input type="text" id="telefonoEmergencia-crear">
+          
+          <label>Numero de plan:</label>
+          <input type="text" id="numeroPlan-crear">
+          
+          <label>Plan ID:</label>
+          <input type="number" id="planId-crear">
+          
+        </div>
+      </div>
       <button class="boton-submit-modal" id="guardarCambiosCrear">Añadir Alumno</button>
   </div>
 </div>
